@@ -1,12 +1,12 @@
 import React from "react";
 
-function ResultBanner({ status }) {
+function ResultBanner({ status, numGuesses, answer }) {
   if (status === "win") {
     return (
       <div class="happy banner">
         <p>
           <strong>Congratulations!</strong> Got it in
-          <strong>3 guesses</strong>.
+          <strong>{numGuesses} guesses</strong>.
         </p>
       </div>
     );
@@ -14,7 +14,7 @@ function ResultBanner({ status }) {
     return (
       <div class="sad banner">
         <p>
-          Sorry, the correct answer is <strong>LEARN</strong>.
+          Sorry, the correct answer is <strong>{answer}</strong>.
         </p>
       </div>
     );
