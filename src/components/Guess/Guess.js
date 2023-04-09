@@ -1,26 +1,27 @@
 import React from "react";
 
-function Guess({ setGuess }) {
-  const [input, setInput] = React.useState("");
-  console.log({ input });
+function Guess({ submitGuess }) {
+  const [guess, setGuess] = React.useState("");
 
   return (
     <form
       className="guess-input-wrapper"
       onSubmit={(e) => {
         e.preventDefault();
-        setGuess(input);
-        setInput("");
+        submitGuess(guess);
+        setGuess("");
       }}
     >
       <label htmlFor="guess-input">Enter guess:</label>
       <input
-        style={{ textTransform: "uppercase" }}
-        pattern=".{5,}"
+        // style={{ textTransform: "uppercase" }}
+        pattern="[a-zA-Z]{5,5}"
+        title="5 letter"
+        required
         id="guess-input"
         type="text"
-        input={input}
-        onChange={(e) => setInput(e.target.value.toUpperCase())}
+        value={guess}
+        onChange={(e) => setGuess(e.target.value.toUpperCase())}
       />
     </form>
   );
