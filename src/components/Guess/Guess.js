@@ -1,20 +1,23 @@
 import React from "react";
 import { range } from "../../utils";
 
+function Cell({ letter, status }) {
+  const cls = status ? `cell ${status}` : "cell";
+  return <span className={cls}>{letter}</span>;
+}
+
 function Guess({ children }) {
-  let letters;
-
-  if (!children) {
-    letters = range(5).map((i) => <span key={i} className="cell"></span>);
-  } else {
-    letters = children.map((item, i) => (
-      <span key={i} className={`cell ${item.status}`}>
-        {item.letter}
-      </span>
-    ));
-  }
-
-  return <div className="guess">{letters}</div>;
+  return (
+    <div className="guess">
+      {range(5).map((i) => (
+        <Cell
+          key={i}
+          letter={children ? children[i].letter : undefined}
+          status={children ? children[i].status : undefined}
+        />
+      ))}
+    </div>
+  );
 }
 
 export default Guess;
